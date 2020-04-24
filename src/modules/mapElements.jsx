@@ -34,7 +34,11 @@ class MapElements extends Component {
 
     loadImagesForSelected(){
         if(this.state.selected.imageUrls === undefined){
-            return [];
+            return (
+                <li className="singlePhoto">
+                    No photos has been found for the selected place :(
+                </li>
+            );
         }
         
         
@@ -51,7 +55,7 @@ class MapElements extends Component {
 
     nextPhoto = () => {
         this.setState(prevState => ({
-            photoIndex: prevState.photoIndex + 1 > 9 ? 0 : prevState.photoIndex + 1,
+            photoIndex: prevState.photoIndex + 1 > this.state.selected.imageUrls.length-1 ? 0 : prevState.photoIndex + 1,
           }));
           console.log(this.state.photoIndex)
     }
@@ -59,7 +63,7 @@ class MapElements extends Component {
 
     previousPhoto = () => {
         this.setState(prevState => ({
-            photoIndex: prevState.photoIndex - 1 < 0 ? 9 : prevState.photoIndex - 1,
+            photoIndex: prevState.photoIndex - 1 < 0 ? this.state.selected.imageUrls.length-1 : prevState.photoIndex - 1,
           }));
     }
 
