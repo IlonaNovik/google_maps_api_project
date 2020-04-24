@@ -7,4 +7,4 @@ import * as bootstrap from 'bootstrap';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-serviceWorker.unregister();
+// serviceWorker.unregister();
