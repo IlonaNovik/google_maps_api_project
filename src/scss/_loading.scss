@@ -39,22 +39,27 @@
     top: 0;
     z-index: 1;
     background: linear-gradient(to bottom, #{fade-out($brown, .2)} 0%,#{fade-out($brown, .2)} 100%);
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
     
     
-
-    li.singlePhoto{
+    li.singlePhoto {
       list-style: none;
-      width: 240px;
-      
+      display: flex;
 
-      img{
-        width: 200px;
-        height: 220px;
-        border-radius: 20px;
-      }
+        .container {
+          width: 700px;
+          height: 500px;
+          vertical-align: middle;
+          text-align: center;
+          display: table-cell;
+
+          img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+
       
     }
 
@@ -66,6 +71,14 @@
       border: none;
       color: $orange;
       font-size: 25px;
+    }
+
+    .awesomeIcon1 {
+      background: none;
+      border: none;
+      color: $orange;
+      font-size: 25px;
+      margin: 30px;
     }
 }
 

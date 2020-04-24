@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component, createRef} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import WelcomePage from './partials/welcome';
@@ -16,12 +16,15 @@ import {
     NavLink
 } from "react-router-dom";
 
+
+
 const Main = () => {
     const links = [
         {name: "welcome", url: "/"},
         {name: "search", url: "/search"},
         {name: "my maps", url: "/maps"},
     ];
+    
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -36,7 +39,7 @@ const Main = () => {
 
                 {links.map(item => (
                     <li key={item.url} className="nav-item">
-                        <NavLink to={item.url} className="nav-link js-scroll-trigger">
+                        <NavLink to={item.url} className="nav-link js-scroll-trigger" activeClassName="active">
                             {item.name}
                         </NavLink>
                     </li>

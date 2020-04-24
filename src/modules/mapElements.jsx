@@ -2,7 +2,7 @@ import React, { Component, ReactDOM } from 'react';
 import MapElement from '../modules/mapElement';
 import placesApiObject from '../services/PlacesApi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import AnimateHeight from 'react-animate-height';
 import Typing from 'react-typing-animation';
 
@@ -20,7 +20,8 @@ class MapElements extends Component {
            height: 0,
            mapElements: [],
            selected: {},
-           displayPictures: "none"
+           displayPictures: "none",
+           photoIndex: 0,
         };
 
         this.loadAllElements();
@@ -36,9 +37,30 @@ class MapElements extends Component {
             return [];
         }
         
-        return this.state.selected.imageUrls.map(item => (
-            <li className="singlePhoto"><img src={item} /></li>
-        ))
+        
+        return (
+                <li className="singlePhoto">
+                    <button className="awesomeIcon1" onClick={this.previousPhoto}><FontAwesomeIcon icon={faChevronLeft} /></button>
+                        <div className="container">
+                                <img src={this.state.selected.imageUrls[this.state.photoIndex]} />
+                        </div>
+                    <button className="awesomeIcon1" onClick={this.nextPhoto}><FontAwesomeIcon icon={faChevronRight} /></button>
+                </li>
+        )
+    }
+
+    nextPhoto = () => {
+        this.setState(prevState => ({
+            photoIndex: prevState.photoIndex + 1 > 9 ? 0 : prevState.photoIndex + 1,
+          }));
+          console.log(this.state.photoIndex)
+    }
+
+
+    previousPhoto = () => {
+        this.setState(prevState => ({
+            photoIndex: prevState.photoIndex - 1 < 0 ? 9 : prevState.photoIndex - 1,
+          }));
     }
 
     addMapElement(item){
@@ -154,9 +176,12 @@ class MapElements extends Component {
                 
                 <div className="gallery" style={{ display: this.state.displayPictures }}>
                     <ul className="photosList">
-                        {
+                        {/* {
                             [...this.loadImagesForSelected()]
+                        } */
+                            this.loadImagesForSelected()
                         }
+                        
                         <button className="awesomeIcon2" onClick={this.closePhotos}>
                                 <FontAwesomeIcon icon={faTimes} />
                         </button>
